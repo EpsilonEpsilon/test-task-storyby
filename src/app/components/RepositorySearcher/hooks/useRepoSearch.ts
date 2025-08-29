@@ -19,8 +19,9 @@ const useRepoSearch = () => {
   }, [page]);
 
   const handlePaginate = async (page: number) => {
-    setPage(page);
-    await handleRequest({ q: searchValue, per_page: perPage, page: page });
+    await handleRequest({ q: searchValue, per_page: perPage, page: page }).then(() => {
+      setPage(page);
+    })
   };
 
   return {
