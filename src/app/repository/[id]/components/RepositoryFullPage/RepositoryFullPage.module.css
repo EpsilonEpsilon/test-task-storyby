@@ -1,0 +1,49 @@
+.root{
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.body{
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.name{
+  font-family: 'Inter', sans-serif;
+  font-size: 2rem;
+}
+
+.description{
+  text-align: center;
+  max-width: 500px;
+  word-spacing: .2rem;
+  line-height: 2rem;
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+}
+
+.item{
+  padding: 1rem;
+  background-color: white;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.title{
+  font-weight: 500;
+  font-size: 1.1rem;
+  font-family: 'Inter', sans-serif;
+}
+
+.value{
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+}

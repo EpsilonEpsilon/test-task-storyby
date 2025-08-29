@@ -1,0 +1,65 @@
+.root{
+    width: 100%;
+    padding: 0.5rem 1rem;
+    max-width: 45rem;
+    background-color: white;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    gap: 1rem;
+}
+
+.linkWrapper{
+    display: flex;
+    width: 100%;
+}
+.root:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.imageContainer{
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.namesContainer{
+    gap: 0.5rem;
+    justify-content: space-between;
+    display: flex;
+    flex-direction: column;
+}
+
+.name{
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+}
+
+.login{
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    font-weight: 400;
+}
+
+.description{
+    font-size: 1rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
+
+.stars{
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.starsCount{
+    font-size: 0.8rem;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+}
