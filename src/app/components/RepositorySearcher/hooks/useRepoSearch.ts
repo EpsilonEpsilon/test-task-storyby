@@ -14,13 +14,10 @@ const useRepoSearch = () => {
     setSearchValue(value);
   };
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }, [page]);
-
   const handlePaginate = async (page: number) => {
     await handleRequest({ q: searchValue, per_page: perPage, page: page }).then(() => {
       setPage(page);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     })
   };
 
