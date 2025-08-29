@@ -22,9 +22,6 @@ const RepositorySearcher = () => {
               placeholder={'Search GitHub Repositories...'}
               rootClassName={styles.input}
             />
-            {/*<Button type="button">*/}
-            {/*  <IoMdSettings size={16} />*/}
-            {/*</Button>*/}
           </FormItem>
       {loading && <Loader />}
       {data && <RepositoryList repositories={data.items} />}
