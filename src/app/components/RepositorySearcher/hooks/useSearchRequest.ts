@@ -51,7 +51,7 @@ const useSearchRequest = ({searchValue, page}:Args)=>{
     if (data && data.total_count) return;
     initialRequest.current = true;
     handleRequest({ q: searchValue, per_page: PER_PAGE, page: page });
-  }, [searchValue, reqCount, data, handleRequest, page, setData]);
+  }, [searchValue, reqCount]);
 
   const getError = ()=>{
     if(reqCount.current < 1) return

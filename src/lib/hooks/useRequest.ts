@@ -30,6 +30,7 @@ function useCreateRequest<R, T = object>(
       if (e instanceof ResponseError) {
         options?.onError(e);
       }
+      throw e;
     } finally {
       setLoading(false);
     }

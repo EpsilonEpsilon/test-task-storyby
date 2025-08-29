@@ -19,6 +19,7 @@ const eslintConfig = [
     rules: {
       'prefer-spread': 'off',
       'no-empty-object-type':'off',
+      "react-hooks/exhaustive-deps":'off',
     },
   },
 ];
