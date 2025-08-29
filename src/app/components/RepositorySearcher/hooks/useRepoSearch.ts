@@ -15,10 +15,15 @@ const useRepoSearch = () => {
   };
 
   const handlePaginate = async (page: number) => {
-    await handleRequest({ q: searchValue, per_page: perPage, page: page }).then(() => {
+    try{
+      await handleRequest({ q: searchValue, per_page: perPage, page: page })
       setPage(page);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    })
+      setTimeout(()=>{
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      },0)
+    }catch (e){
+      console.error(e);
+    }
   };
 
   return {

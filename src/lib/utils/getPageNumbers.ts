@@ -6,8 +6,8 @@ function getPageNumbers(currentPage: number, totalPages: number): number[] {
         throw new Error('Current page is out of range');
     }
 
-    pages.push(1);
 
+    if(currentPage < 3) pages.push(1);
     if (currentPage > 3) {
         pages.push(currentPage - 2);
         pages.push(currentPage - 1);
