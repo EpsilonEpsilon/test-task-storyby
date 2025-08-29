@@ -4,12 +4,13 @@ import useCreateRequest from '@/lib/hooks/useRequest';
 import postSearchRepo, { SearchRepoParams } from '@/lib/api/github/requests/postSearchRepo';
 import toast from 'react-hot-toast';
 const PER_PAGE = 10;
+const MIN_CHARS = 3;
 const useRepoSearch = () => {
   const initialRequest = useRef<boolean>(false);
   const [page, setPage] = useState<number>(1);
   const [searchValue, setSearchValue] = useState<string>('');
   const controller = useRef(new AbortController());
-  const [handleRequestRepos, { loading, data, reqCount }] = useCreateRequest<
+  const [handleRequestRepos, { loading, data, reqCount, setData }] = useCreateRequest<
     Awaited<ReturnType<typeof postSearchRepo>>,
     SearchRepoParams
   >((data) => postSearchRepo(data, controller.current.signal), {
@@ -31,7 +32,7 @@ const useRepoSearch = () => {
         initialRequest.current = false;
         return;
       }
-      if (!searchValue || searchValue.length < 3) return;
+      if (!searchValue || searchValue.length < MIN_CHARS) return;
       if (loading) {
         controller.current.abort();
         controller.current = new AbortController();
@@ -43,12 +44,16 @@ const useRepoSearch = () => {
   );
 
   useEffect(() => {
-    if (!searchValue || searchValue.length < 3) return;
+    if (!searchValue || searchValue.length < MIN_CHARS){
+      initialRequest.current = true;
+      setData(undefined);
+      return;
+    }
 
     if (data && data.total_count) return;
     initialRequest.current = true;
     handleRequestRepos({ q: searchValue, per_page: PER_PAGE, page: page });
-  }, [searchValue, reqCount]);
+  }, [searchValue, reqCount, data, handleRequestRepos, page, setData]);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -59,7 +64,11 @@ const useRepoSearch = () => {
     await handleRequestRepos({ q: searchValue, per_page: PER_PAGE, page: page }).then();
   };
 
-  return { onSearchValueChange, searchValue, loading, data, handlePaginate, page, getTotalPages };
+  const getError = ()=>{
+    if(reqCount.current < 1) return
+    if(searchValue.length < MIN_CHARS) return "Please enter at least 3 characters to start searching."
+  }
+  return { onSearchValueChange, searchValue, loading, data, handlePaginate, page, getTotalPages, getError };
 };
 
 export default useRepoSearch;

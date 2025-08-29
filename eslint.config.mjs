@@ -12,19 +12,13 @@ const compat = new FlatCompat({
 const eslintConfig = [
   ...compat.extends('next/core-web-vitals', 'next/typescript'),
   {
+    rules:[],
     ignores: ['node_modules/**', '.next/**', 'out/**', 'build/**', 'next-env.d.ts'],
   },
   {
     rules: {
-      '@typescript-eslint/ban-types': [
-        'error',
-        {
-          types: {
-            '{}': false,
-          },
-          extendDefaults: true,
-        },
-      ],
+      'prefer-spread': 'off',
+      'no-empty-object-type':'off',
     },
   },
 ];

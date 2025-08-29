@@ -9,6 +9,7 @@ h1{
 html{
     background: #f5f5f5;
     font-size: 16px;
+    scrollbar-gutter: stable;
 }
 
 *{

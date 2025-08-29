@@ -4,12 +4,12 @@ import ResponseError from '@/lib/errors/ResponseError';
 
 type CreateHookType<R, T> = [
   (data: T) => Promise<R | undefined>,
-  { loading: boolean; data: R | undefined; reqCount: RefObject<number> },
+  { loading: boolean; data: R | undefined; reqCount: RefObject<number>, setData:(data:R | undefined)=>void },
 ];
 interface Options {
   onError: (e: ResponseError) => void;
 }
-function useCreateRequest<R, T = {}>(
+function useCreateRequest<R, T = object>(
   request: (data: T) => Promise<R>,
   options?: Options,
 ): CreateHookType<R, T> {
@@ -18,6 +18,7 @@ function useCreateRequest<R, T = {}>(
 
   const [response, setResponse] = useState<R | undefined>(undefined);
   const handleRequest = async (data: T) => {
+
     try {
       setLoading(true);
       requestsCount.current += 1;
@@ -34,7 +35,7 @@ function useCreateRequest<R, T = {}>(
     }
   };
 
-  return [handleRequest, { loading, data: response!, reqCount: requestsCount }];
+  return [handleRequest, { loading, data: response!, reqCount: requestsCount, setData:setResponse }];
 }
 
 export default useCreateRequest;
