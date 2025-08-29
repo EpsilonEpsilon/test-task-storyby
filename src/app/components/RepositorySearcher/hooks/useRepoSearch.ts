@@ -44,6 +44,7 @@ const useRepoSearch = () => {
 
   useEffect(() => {
     if (!searchValue || searchValue.length < 3) return;
+
     if (data && data.total_count) return;
     initialRequest.current = true;
     handleRequestRepos({ q: searchValue, per_page: PER_PAGE, page: page });

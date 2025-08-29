@@ -24,7 +24,9 @@ async function postSearchRepo(params: SearchRepoParams, signal: AbortSignal) {
     headers: githubReqHeaders,
     signal: signal,
   });
+  console.log(req, 'RESS??');
   const data = await req.json();
+
   if (!req.ok) {
     throw new ResponseError(req.status, req.statusText || data.message);
   }
